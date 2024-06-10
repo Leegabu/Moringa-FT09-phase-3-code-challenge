@@ -33,27 +33,6 @@ class Article:
             raise ValueError("Content must be a non-empty string")
         self._content = content
     
-    @property
-    def author_id(self):
-        return self._author_id
-    
-    @author_id.setter
-    def author_id(self, author_id):
-        from models.author import Author
-        if not type(author_id) is int and Author.find_by_id(author_id):
-            raise ValueError("Author ID must reference an author in the database")
-        self._author_id = author_id
-        
-    @property
-    def magazine_id(self):
-        return self._magazine_id
-    
-    @magazine_id.setter
-    def magazine_id(self, magazine_id):
-        from models.magazine import Magazine
-        if type(magazine_id) is int and Magazine.find_by_id(magazine_id):
-            raise ValueError("Magazine ID must reference a magazine in the database")
-        self._magazine_id = magazine_id
 
     def author(self):
         conn = get_db_connection()
